@@ -2,17 +2,42 @@
 
 Contact a K-Link Video Streaming service via API.
 
-> The client is in development, API an classes are subject to change.
+> The client is in development, API and classes are subject to change.
+
+> **Not usable on Alpine linux as requires an executable not compiled for alpine**
 
 ## Getting started
 
 ### Installation
 
-_to be written_
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://git.klink.asia/alessio.vertemati/k-link-video-streaming-client-php"
+    }
+]
+```
+
+```json
+"require": {
+    "oneofftech/k-link-streaming-upload-client": "dev-master"
+},
+```
+
+```
+composer update oneofftech/k-link-streaming-upload-client
+```
 
 ### Usage
 
-_to be written_
+```php
+use Oneofftech\KlinkStreaming\Client;
+
+$client = new Client($streaming_service_url, $application_token, $application_url);
+
+$client->upload($file);
+```
 
 
 ## Documentation

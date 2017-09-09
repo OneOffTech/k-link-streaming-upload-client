@@ -1,0 +1,19 @@
+## Continuous Integration Jobs definition
+
+stages:
+  - test
+
+cache:
+  key: "video-streaming-service-client-php"
+  paths:
+  - .composer-cache/
+
+unit_test:
+  stage: test
+  image: "docker.klink.asia/open/docker-php:7.0"
+  script:
+    - export COMPOSER_CACHE_DIR=`pwd`/.composer-cache
+    - composer install --prefer-dist
+    - vendor/bin/phpunit
+  tags:
+    - docker
