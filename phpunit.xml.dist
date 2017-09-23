@@ -9,6 +9,10 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">./tests/Integration</directory>
+        </testsuite>
+
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
@@ -23,6 +27,6 @@
         </whitelist>
     </filter>
     <php>
-        <env name="VIDEO_STREAMING_SERVICE_URL" value="http://localhost:8000"/>
+        <env name="VIDEO_STREAMING_SERVICE_URL" value=""/>
     </php>
 </phpunit>

@@ -91,5 +91,13 @@ class Upload
         return $this->process->isRunning();
     }
 
-
+    /**
+     * Get the video identifier
+     *
+     * @return string
+     */
+    public function videoId()
+    {
+        return $this->video_id;
+    }
 }

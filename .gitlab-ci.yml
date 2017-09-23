@@ -8,6 +8,18 @@ cache:
   paths:
   - .composer-cache/
 
+variables:
+  # Configure environment variables for the service
+  APP_ENV: local
+  APP_KEY: "abcdefghi12345abcdefghi12345"
+  APP_URL: "http://docker.klink.asia-main-video-streaming-service/"
+  KLINK_REGISTRY_URL: ""
+  # Configure environment for the testing
+  VIDEO_STREAMING_SERVICE_URL: "http://docker.klink.asia-main-video-streaming-service/"
+
+services:
+  - docker.klink.asia/main/video-streaming-service:master
+
 unit_test:
   stage: test
   image: "docker.klink.asia/main/docker-php:7.0"
