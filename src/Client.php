@@ -57,7 +57,7 @@ class Client
             throw new InvalidArgumentException("Only video/mp4 files are supported. Given [$mime].");
         }
 
-        $request_id = 'sc-' . time();
+        $request_id = 'sc-' . microtime();
 
         $response = $this->request()->post($this->url('video.add'), [
                 'id' => $request_id,
@@ -90,7 +90,7 @@ class Client
     public function get($video_id)
     {
         $response = $this->request()->post($this->url('video.get'), [
-                'id' => 'sc-' . time(),
+                'id' => 'sc-' . microtime(),
                 'params' => ['video_id' => $video_id]
         ]);
 
@@ -108,7 +108,7 @@ class Client
     public function delete($video_id)
     {
         $response = $this->request()->post($this->url('video.delete'), [
-                'id' => 'sc-' . time(),
+                'id' => 'sc-' . microtime(),
                 'params' => ['video_id' => $video_id],
         ]);
         
