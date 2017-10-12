@@ -10,14 +10,19 @@ Contact a K-Link Video Streaming service via API.
 
 ### Installation
 
+As the package is still in development we require to add a repository entry in your 
+`composer.json` file before you can pull in the package:
+
 ```json
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://git.klink.asia/alessio.vertemati/k-link-video-streaming-client-php"
+        "url": "https://git.klink.asia/main/k-link-video-streaming-client-php"
     }
 ]
 ```
+
+Now you can add the reference to the package in your `composer.json` require section
 
 ```json
 "require": {
@@ -25,14 +30,23 @@ Contact a K-Link Video Streaming service via API.
 },
 ```
 
+And finally pull in the source
+
 ```
 composer update oneofftech/k-link-streaming-upload-client
 ```
 
 ### Usage
 
+> The client requires that your project has a registered application on the K-Registry, as the
+> streaming service will verify that the application has the right permission to upload videos.
+
 ```php
 use Oneofftech\KlinkStreaming\Client;
+
+$streaming_service_url = 'https://streaming.test.klink.asia/';
+$application_token = 'Application Token';
+$application_url = 'https://myapp.local/'
 
 $client = new Client($streaming_service_url, $application_token, $application_url);
 
