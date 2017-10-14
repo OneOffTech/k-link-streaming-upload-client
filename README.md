@@ -17,7 +17,7 @@ As the package is still in development we require to add a repository entry in y
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://git.klink.asia/main/k-link-video-streaming-client-php"
+        "url": "https://git.klink.asia/main/k-link-video-streaming-client-php.git"
     }
 ]
 ```
