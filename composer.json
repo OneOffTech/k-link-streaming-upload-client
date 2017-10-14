@@ -41,6 +41,9 @@
     "scripts": {
         "post-install-cmd": [
             "Oneofftech\\KlinkStreaming\\Installer::downloadTusClient"
+        ],
+        "post-update-cmd": [
+            "Oneofftech\\KlinkStreaming\\Installer::downloadTusClient"
         ]
     }
 }
