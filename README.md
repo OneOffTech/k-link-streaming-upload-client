@@ -46,7 +46,7 @@ use Oneofftech\KlinkStreaming\Client;
 
 $streaming_service_url = 'https://streaming.test.klink.asia/';
 $application_token = 'Application Token';
-$application_url = 'https://myapp.local/'
+$application_url = 'https://myapp.local/';
 
 $client = new Client($streaming_service_url, $application_token, $application_url);
 
