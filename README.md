@@ -22,18 +22,42 @@ As the package is still in development we require to add a repository entry in y
 ]
 ```
 
-Now you can add the reference to the package in your `composer.json` require section
+Now you need to specify, in composer.json, that you accepts dev packages
 
 ```json
-"require": {
-    "oneofftech/k-link-streaming-upload-client": "dev-master"
-},
+"minimum-stability": "dev",
+"prefer-stable": true,
 ```
 
-And finally pull in the source
+With `"prefer-stable": true` composer will not try to download every development versions of 
+your, already added, dependencies.
 
+Now you can require the package with
+
+```bash
+composer require oneofftech/k-link-streaming-upload-client
 ```
-composer update oneofftech/k-link-streaming-upload-client
+
+**Post install/update/require**
+
+The Streaming Service client depends on the [Tus Cli](https://github.com/avvertix/tus-client-cli), 
+which is not included in this repository to keep the size within a reasonable limit. Composer, 
+for [various reasons](https://github.com/composer/composer/issues/1193), don't execute 
+`post-install` scripts of required packages therefore it needs to be run manually.
+
+You could do it via bash/shell
+
+```bash
+composer run-script post-install-cmd -d ./vendor/oneofftech/k-link-streaming-upload-client
+```
+
+Or invoke that script from the `post-install-cmd`/`post-update-cmd` scripts defined in the `composer.json`
+
+```json
+"scripts": {
+    "post-install-cmd": "@composer run-script post-install-cmd -d ./vendor/oneofftech/k-link-streaming-upload-client",
+    "post-update-cmd": "@composer run-script post-install-cmd -d ./vendor/oneofftech/k-link-streaming-upload-client"
+}
 ```
 
 ### Usage
