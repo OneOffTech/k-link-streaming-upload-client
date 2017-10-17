@@ -57,6 +57,13 @@ class Upload
      */
     public function start()
     {
+        // set the command execution timeout to null to prevent automatic handling
+        // this is done mainly because the tus-upload-cli output is fetched in a 
+        // single solution and the idle timout is based on the time between output 
+        // events on the output interface
+        $this->process->setTimeout(null);
+        $this->process->setIdleTimeout(null);
+
         $code = $this->process->run();
 
         $err = $this->process->getErrorOutput();
