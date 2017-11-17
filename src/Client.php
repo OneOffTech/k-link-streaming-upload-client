@@ -4,8 +4,9 @@ namespace Oneofftech\KlinkStreaming;
 
 use Zttp\Zttp;
 use InvalidArgumentException;
+use Oneofftech\KlinkStreaming\Contracts\Client as ClientContract;
 
-class Client
+class Client implements ClientContract
 {   
 
     use Concerns\InteractWithHttp;
