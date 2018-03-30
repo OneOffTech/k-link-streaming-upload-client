@@ -2,37 +2,13 @@
 
 Contact a K-Link Video Streaming service via API.
 
-> The client is in development, API and classes are subject to change.
-
 > **Not usable on Alpine linux as requires an executable not compiled for alpine**
 
 ## Getting started
 
 ### Installation
 
-As the package is still in development we require to add a repository entry in your 
-`composer.json` file before you can pull in the package:
-
-```json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://git.klink.asia/main/k-link-video-streaming-client-php.git"
-    }
-]
-```
-
-Now you need to specify, in composer.json, that you accepts dev packages
-
-```json
-"minimum-stability": "dev",
-"prefer-stable": true,
-```
-
-With `"prefer-stable": true` composer will not try to download every development versions of 
-your, already added, dependencies.
-
-Now you can require the package with
+Require the package with
 
 ```bash
 composer require oneofftech/k-link-streaming-upload-client
@@ -62,8 +38,7 @@ Or invoke that script from the `post-install-cmd`/`post-update-cmd` scripts defi
 
 ### Usage
 
-> The client requires that your project has a registered application on the K-Registry, as the
-> streaming service will verify that the application has the right permission to upload videos.
+The client requires a registered application on the [K-Registry](https://github.com/k-box/k-link-registry), as the streaming service will verify that the application has the rights to upload videos.
 
 ```php
 use Oneofftech\KlinkStreaming\Client;
@@ -80,7 +55,7 @@ $client->upload($file);
 
 ## Documentation
 
-_to be written_
+There is no full documentation yet, for usage examples you might want to have a look at the [Integration tests](./tests/Integration/ClientUsageTest.php)
 
 
 ## Testing
@@ -112,5 +87,4 @@ Thank you for considering contributing to the K-Link Streaming Service PHP Clien
 
 ## License
 
-_needs to be selected_
-
+This project is licensed under the [MIT license](./LICENSE).

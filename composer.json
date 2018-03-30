@@ -2,7 +2,7 @@
     "name": "oneofftech/k-link-streaming-upload-client",
     "description": "Upload videos to a K-Link Streaming Service",
     "type": "library",
-    "license": "AGPL-3.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "alessio",
