@@ -1,6 +1,6 @@
 # K-Link Streaming Service client
 
-Contact a K-Link Video Streaming service via API.
+Contact a [K-Link Video Streaming](https://github.com/k-box/k-link-video-streaming) service via API.
 
 > **Not usable on Alpine linux as requires an executable not compiled for alpine**
 
