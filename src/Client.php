@@ -129,7 +129,7 @@ class Client implements ClientContract
         if($response->status() === 422){
             $mappedErrors = array_map(function($a){
                 return join(', ', $a);
-            }, array_values($body));
+            }, array_values($body['errors'] ?? $body));
             throw new \InvalidArgumentException(join(', ', $mappedErrors));
         }
 

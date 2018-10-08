@@ -28,7 +28,7 @@ class ClientUsageTest extends TestCase
 
         $videos = new Client($url, $app_token, $app_url);
         
-        $video_path = __DIR__ .'/../data/example.mp4';
+        $video_path = __DIR__ .'/../data/video.mp4';
 
         $upload = $videos->add($video_path);
 

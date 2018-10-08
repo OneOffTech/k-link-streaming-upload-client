@@ -81,7 +81,7 @@ class AddVideoTest extends TestCase
         $videos = $this->getMockedClient($url, $app_token, $app_url, 200, $http_response);
 
         $file_path = $this->storage_path . 'file.mp4';
-        file_put_contents($file_path, file_get_contents(__DIR__ .'/../data/example.mp4'));
+        file_put_contents($file_path, file_get_contents(__DIR__ .'/../data/video.mp4'));
 
         $response = $videos->add($file_path);
 
