@@ -33,9 +33,9 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "tus-client-binary": {
-            "windows": "https://github.com/avvertix/tus-client-cli/releases/download/v0.2.0/tus-client-win.exe",
-            "linux": "https://github.com/avvertix/tus-client-cli/releases/download/v0.2.0/tus-client-linux",
-            "darwin": "https://github.com/avvertix/tus-client-cli/releases/download/v0.2.0/tus-client-macos"
+            "windows": "https://github.com/avvertix/tus-client-cli/releases/download/v0.3.0/tus-client-win.exe",
+            "linux": "https://github.com/avvertix/tus-client-cli/releases/download/v0.3.0/tus-client-linux",
+            "darwin": "https://github.com/avvertix/tus-client-cli/releases/download/v0.3.0/tus-client-macos"
         }
     },
     "scripts": {
@@ -48,7 +48,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "0.2.x-dev"
         }
     }
 }
