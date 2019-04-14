@@ -18,11 +18,11 @@ variables:
   VIDEO_STREAMING_SERVICE_URL: "http://docker.klink.asia-main-video-streaming-service/"
 
 services:
-  - docker.klink.asia/main/video-streaming-service:master
+  - docker.klink.asia/images/video-streaming-service:0.3.1
 
 unit_test:
   stage: test
-  image: "docker.klink.asia/main/docker-php:7.0"
+  image: "edbizarro/gitlab-ci-pipeline-php:7.1"
   script:
     - export COMPOSER_CACHE_DIR=`pwd`/.composer-cache
     - composer install --prefer-dist
