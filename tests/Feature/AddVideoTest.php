@@ -29,7 +29,7 @@ class AddVideoTest extends TestCase
         }
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->storage_path = __DIR__ .'/../storage/';
 
@@ -38,7 +38,7 @@ class AddVideoTest extends TestCase
         }
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if(is_dir($this->storage_path)){
             $this->delete_files($this->storage_path);

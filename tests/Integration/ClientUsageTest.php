@@ -11,7 +11,7 @@ use Oneofftech\KlinkStreaming\Upload;
 class ClientUsageTest extends TestCase
 {
 
-    protected function setUp()
+    protected function setUp(): void
     {
         if (empty(getenv('VIDEO_STREAMING_SERVICE_URL'))) {
             $this->markTestSkipped(
