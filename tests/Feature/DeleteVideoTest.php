@@ -2,6 +2,7 @@
 
 namespace Tests\Features;
 
+use InvalidArgumentException;
 use Tests\TestCase;
 use Tests\Fixtures\MockableClient;
 use Oneofftech\KlinkStreaming\Client;
@@ -36,10 +37,6 @@ class DeleteVideoTest extends TestCase
         $this->assertEquals('deleted', $response->status);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The selected params.video id is invalid.
-     */
     public function test_video_delete_request_with_invalid_video_id()
     {
 
@@ -59,6 +56,8 @@ class DeleteVideoTest extends TestCase
 
         $videos = $this->getMockedClient($url, $app_token, $app_url, 422, $http_response);
 
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The selected params.video id is invalid.');
         $response = $videos->delete('2017081');
     }
 }

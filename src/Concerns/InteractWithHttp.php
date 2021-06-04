@@ -2,8 +2,17 @@
 
 namespace Oneofftech\KlinkStreaming\Concerns;
 
-use Zttp\Zttp;
 use Oneofftech\KlinkStreaming\Http\Response;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Http\Client\Common\Plugin\AuthenticationPlugin;
+use Http\Client\Common\Plugin\HeaderSetPlugin;
+use Http\Client\Common\PluginClient;
+use Http\Client\HttpClient;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
+use Http\Message\Authentication;
+use Http\Message\MessageFactory;
+use Psr\Http\Message\ResponseInterface;
 
 trait InteractWithHttp
 {   
@@ -25,6 +34,10 @@ trait InteractWithHttp
        */
     private $app_url = null;
 
+    private $httpClient = null;
+
+    private $messageFactory = null;
+
     /**
      * Build the URL for an API action
      *
@@ -39,16 +52,31 @@ trait InteractWithHttp
     /**
      * Generates a JSON request with authorization
      *
-     * @return \Zttp\PendingZttpRequest
+     * @return ResponseInterface
      */
-    protected function request()
+    protected function request($method, $url, $body)
     {
-        return Zttp::withHeaders([
-                'Origin' => $this->app_url, 
-                'Authorization' => 'Bearer ' . $this->app_token
-        ])->beforeSending(function($request){
-            // var_dump($request);
-        })->accept('application/json')->asJson();
+        if(is_null($this->httpClient)){
+
+            $this->httpClient = new PluginClient(
+                HttpClientDiscovery::find(),
+                [
+                    new HeaderSetPlugin([
+                        'User-Agent' => 'K-Link Streaming Client',
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'Origin' => $this->app_url, 
+                        'Authorization' => 'Bearer ' . $this->app_token
+                        ]),
+                        ]
+                    );
+
+            $this->messageFactory = MessageFactoryDiscovery::find();
+        }
+
+        $request = $this->messageFactory->createRequest($method, $url, [], json_encode($body));
+
+        return $this->httpClient->sendRequest($request);
     }
 
 }

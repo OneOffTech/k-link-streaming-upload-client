@@ -12,17 +12,17 @@ variables:
   # Configure environment variables for the service
   APP_ENV: local
   APP_KEY: "abcdefghi12345abcdefghi12345"
-  APP_URL: "http://docker.klink.asia-images-video-streaming-service/"
+  APP_URL: "http://klinktech-k-link-video-streaming/"
   KLINK_REGISTRY_URL: ""
   # Configure environment for the testing
-  VIDEO_STREAMING_SERVICE_URL: "http://docker.klink.asia-images-video-streaming-service/"
+  VIDEO_STREAMING_SERVICE_URL: "http://klinktech-k-link-video-streaming/"
 
 services:
-  - docker.klink.asia/images/video-streaming-service:0.3.1
+  - klinktech/k-link-video-streaming:0.3.1
 
 unit_test:
   stage: test
-  image: "edbizarro/gitlab-ci-pipeline-php:7.1"
+  image: "edbizarro/gitlab-ci-pipeline-php:7.4"
   script:
     - export COMPOSER_CACHE_DIR=`pwd`/.composer-cache
     - composer install --prefer-dist

@@ -2,6 +2,7 @@
 
 namespace Tests\Integration;
 
+use InvalidArgumentException;
 use Tests\TestCase;
 use Tests\Fixtures\MockableClient;
 use Oneofftech\KlinkStreaming\Client;
@@ -87,9 +88,6 @@ class ClientUsageTest extends TestCase
         $this->assertEquals('deleted', $video->status);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function test_get_non_existing_video()
     {
         $url = getenv('VIDEO_STREAMING_SERVICE_URL');
@@ -97,6 +95,8 @@ class ClientUsageTest extends TestCase
         $app_url = 'url';
 
         $videos = new Client($url, $app_token, $app_url);
+
+        $this->expectException(InvalidArgumentException::class);
         
         $video = $videos->get('20170813');
     }

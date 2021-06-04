@@ -60,7 +60,7 @@ class Client implements ClientContract
 
         $request_id = 'sc-' . microtime();
 
-        $response = $this->request()->post($this->url('video.add'), [
+        $response = $this->request('POST', $this->url('video.add'), [
                 'id' => $request_id,
                 'params' => [
                     'filename' => $file_info->getFilename(),
@@ -90,7 +90,7 @@ class Client implements ClientContract
      */
     public function get($video_id)
     {
-        $response = $this->request()->post($this->url('video.get'), [
+        $response = $this->request('POST', $this->url('video.get'), [
                 'id' => 'sc-' . microtime(),
                 'params' => ['video_id' => $video_id]
         ]);
@@ -108,7 +108,7 @@ class Client implements ClientContract
      */
     public function delete($video_id)
     {
-        $response = $this->request()->post($this->url('video.delete'), [
+        $response = $this->request('POST', $this->url('video.delete'), [
                 'id' => 'sc-' . microtime(),
                 'params' => ['video_id' => $video_id],
         ]);
@@ -120,13 +120,13 @@ class Client implements ClientContract
 
     protected function processResponse($response)
     {
-        $body = $response->json();
+        $body = json_decode((string)$response->getBody(), true);
         // response code 200 => ok
         // response code 422 => parameter error
         // response code 401 => error object with information
         // response code else => error object with information
         
-        if($response->status() === 422){
+        if($response->getStatusCode() === 422){
             $mappedErrors = array_map(function($a){
                 return join(', ', $a);
             }, array_values($body['errors'] ?? $body));

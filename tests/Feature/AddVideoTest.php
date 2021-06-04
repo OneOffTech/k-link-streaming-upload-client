@@ -2,9 +2,11 @@
 
 namespace Tests\Features;
 
+use InvalidArgumentException;
 use Tests\TestCase;
 use Tests\Fixtures\MockableClient;
 use Oneofftech\KlinkStreaming\Client;
+use Oneofftech\KlinkStreaming\Exceptions\UploadFailedException;
 use Oneofftech\KlinkStreaming\Video;
 use Oneofftech\KlinkStreaming\Upload;
 
@@ -45,14 +47,13 @@ class AddVideoTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function test_text_file_cannot_be_uploaded()
     {
         $url = getenv('VIDEO_STREAMING_SERVICE_URL');
         $app_token = 'token';
         $app_url = 'url';
+
+        $this->expectException(InvalidArgumentException::class);
 
         $videos = new Client($url, $app_token, $app_url);
 
@@ -62,9 +63,6 @@ class AddVideoTest extends TestCase
         $videos->add($file_path);
     }
 
-    /**
-     * @expectedException Oneofftech\KlinkStreaming\Exceptions\UploadFailedException
-     */
     public function test_video_file_upload_started_and_failure_is_handled()
     {
         $url = getenv('VIDEO_STREAMING_SERVICE_URL');
@@ -82,6 +80,8 @@ class AddVideoTest extends TestCase
 
         $file_path = $this->storage_path . 'file.mp4';
         file_put_contents($file_path, file_get_contents(__DIR__ .'/../data/video.mp4'));
+
+        $this->expectException(UploadFailedException::class);
 
         $response = $videos->add($file_path);
 

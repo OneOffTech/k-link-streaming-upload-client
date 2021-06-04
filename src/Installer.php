@@ -33,13 +33,12 @@ class Installer
 
             $fileName = __DIR__ . '/../bin/tus-client' . ($os==='windows' ? '.exe' : '');
             $processedUrl = $binary_urls[$os];
-            $hostname = parse_url($processedUrl, PHP_URL_HOST);
 
-            $rfs = Factory::createRemoteFilesystem($io, $event->getComposer()->getConfig());
+            $rfs = Factory::createHttpDownloader($io, $event->getComposer()->getConfig());
 
             try {
 
-                $rfs->copy($hostname, $processedUrl, $fileName, true);
+                $rfs->copy($processedUrl, $fileName);
 
             } catch (TransportException $e) {
                 $io->writeError('');
