@@ -25,6 +25,7 @@ unit_test:
   image: "edbizarro/gitlab-ci-pipeline-php:7.4"
   script:
     - export COMPOSER_CACHE_DIR=`pwd`/.composer-cache
+    - sudo composer self-update --2 
     - composer install --prefer-dist
     - vendor/bin/phpunit
   tags:
