@@ -1,0 +1,19 @@
+## Example Docker Compose file to start a testing intance of a K-Link Video Streaming Service
+
+## before, execute
+## docker build -t video-streaming .
+
+video_streaming:
+    image: "klinktech/k-link-video-streaming:0.3.1"
+    environment:
+      APP_ENV: "local"
+      APP_URL: "http://localhost:8080/"
+      APP_KEY: "0CjGv0c4KF00D62TB10r3tJQdKM6cE0s"
+      ## The URL of the K-Link Registry that will be used to authenticate requests
+      KLINK_REGISTRY_URL: "null" 
+    ## Volumes
+    # volumes:
+    ##  Automatic volume, change it to be persistent
+    #   - "/var/www/vss/storage"
+    ports:
+      - "8080:80"

@@ -3,6 +3,7 @@
 namespace Tests\Features;
 
 use Tests\TestCase;
+use InvalidArgumentException;
 use Tests\Fixtures\MockableClient;
 use Oneofftech\KlinkStreaming\Client;
 use Oneofftech\KlinkStreaming\Video;
@@ -50,10 +51,6 @@ class GetVideoTest extends TestCase
         $this->assertNotEmpty($video->url);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The selected params.video id is invalid.
-     */
     public function test_video_get_request_with_invalid_video_id()
     {
         $url = getenv('VIDEO_STREAMING_SERVICE_URL');
@@ -65,6 +62,9 @@ class GetVideoTest extends TestCase
         ];
 
         $videos = $this->getMockedClient($url, $app_token, $app_url, 422, $http_response);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The selected params.video id is invalid.');
 
         $response = $videos->get('2017081');
     }

@@ -41,12 +41,17 @@ class Upload
         $this->file = $file;
         $this->url = $tus_url;
         $this->token = $token;
-
-        $this->process = new Process( [$this->getUploaderBinary() . ' upload --meta "upload_request_id='.$this->request_id.',token='.$this->token.'" "'.$this->file.'" '.$this->url.''], realpath(__DIR__ . '/../bin/'));
+        $this->process = new Process( [
+                $this->getUploaderBinary(), 
+                'upload', 
+                '--meta', 'upload_request_id='.$this->request_id.',token='.$this->token.'', 
+                $this->file,
+                $this->url
+            ], realpath(__DIR__ . '/../bin/'));
     }
 
     private function getUploaderBinary(){
-        return  strtolower(PHP_OS)==='winnt' ? 'tus-client.exe' : realpath(__DIR__ . '/../bin/') . '/tus-client';
+        return  strtolower(PHP_OS)==='winnt' ? realpath(__DIR__ . '/../bin/') . '\tus-client.exe' : realpath(__DIR__ . '/../bin/') . '/tus-client';
     }
 
 
